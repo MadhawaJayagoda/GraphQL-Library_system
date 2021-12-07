@@ -11,6 +11,7 @@ const {
 } = graphql;
 
 
+// Dummy data
 var books = [
     { name: 'Name of the Wind', genre: 'Fantasy', id: '1', authorId: '2'},
     { name: 'The Final Empire', genre: 'Fantasy', id: '2', authorId: '1'},
@@ -29,12 +30,13 @@ var authors = [
 
 
 const BookType = new GraphQLObjectType({
-    name: 'Book',
+    name: 'Book', 
     fields: () => ({
         id: { type: GraphQLID },
         name: { type: GraphQLString},
         genre: { type: GraphQLString},
         author: {
+    
             type: AuthorType, 
             resolve(parent, args) {
                 console.log(parent);
@@ -44,14 +46,13 @@ const BookType = new GraphQLObjectType({
     })
 });
 
-
 const AuthorType = new GraphQLObjectType({
     name: 'Author',
     fields: () => ({
         id: { type: GraphQLID },
         name: { type: GraphQLString },
         age: { type: GraphQLInt },
-        book: { 
+        book: {
             type: new GraphQLList(BookType),       
             resolve(parent, args) {
                 return _.filter(books, {authorId: parent.id})
@@ -78,7 +79,21 @@ const RootQuery = new GraphQLObjectType({
             resolve(parent, args) {
                 return _.find(authors, { id: args.id });
             }           
-        } 
+        },
+
+        books: {
+            type: new GraphQLList(BookType),
+            resolve(parent, args) {
+                return books
+            }
+        },
+
+        authors: {
+            type: new GraphQLList(AuthorType),
+            resolve(parent, args) {
+                return authors
+            }
+        }
     }
 });
 
