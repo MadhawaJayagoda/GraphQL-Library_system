@@ -20,8 +20,9 @@ const BookType = new GraphQLObjectType({
         name: { type: GraphQLString},
         genre: { type: GraphQLString},
         author: {
-            type: AuthorType, 
+            type: AuthorType,
             resolve(parent, args) {
+                return authorSchema.findById(parent.authorId);
             }
         }
     })
@@ -36,7 +37,7 @@ const AuthorType = new GraphQLObjectType({
         book: {
             type: new GraphQLList(BookType),      
             resolve(parent, args) {
-             
+                return bookSchema.find({ authorId: parent.id});   
             }
         }
     }) 
@@ -49,7 +50,7 @@ const RootQuery = new GraphQLObjectType({
             type: BookType,
             args: { id: { type: GraphQLID}},
             resolve(parent, args) {
-               
+                return bookSchema.findById(args.id);
             }
         },
 
@@ -57,21 +58,21 @@ const RootQuery = new GraphQLObjectType({
             type: AuthorType,
             args: { id: { type: GraphQLID }},
             resolve(parent, args) {
-
+                return authorSchema.findById(args.id);
             }           
         },
 
         books: {
             type: new GraphQLList(BookType),
             resolve(parent, args) {
-
+                return bookSchema.find({});                                  
             }
         },
 
         authors: {
             type: new GraphQLList(AuthorType),
             resolve(parent, args) {
-
+                return authorSchema.find({})   
             }
         }
     }
@@ -94,6 +95,23 @@ const Mutation = new GraphQLObjectType({
                 });
 
                 return author.save();
+            }
+        },
+
+        addBook: {
+            type: BookType,
+            args: {
+                name: { type: GraphQLString},
+                genre: { type: GraphQLString},
+                authorId: { type: GraphQLID}
+            },
+            resolve(parent, args) {
+                let book = new bookSchema({
+                    name: args.name,
+                    genre: args.genre,
+                    authorId: args.authorId
+                });
+                return book.save();
             }
         }
     } 
