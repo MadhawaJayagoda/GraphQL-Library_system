@@ -12,7 +12,6 @@ app.use('/graphql', graphqlHTTP({
     graphiql: true
 }));
 
-//db connection
 mongoose.connect( constants.DB_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true  } , (err) => {
     if(err){
         console.log("Error occured while connecting ot the Database !");
