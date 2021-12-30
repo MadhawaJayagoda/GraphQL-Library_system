@@ -1,0 +1,4 @@
+node_modules/
+src/resources/*
+src/components/
+src/queries/
