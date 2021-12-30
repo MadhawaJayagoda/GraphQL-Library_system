@@ -1,5 +1,5 @@
 # GraphQL - Simple Application for Library Management System
-This is a simple project done for a Library Management System. The project includes features such as:
+This is a simple project done by me for a Library Management System. The project includes features such as:
  * ✅ Listing Books
  * ✅ Adding a Book
  * ✅ View details of a Book
