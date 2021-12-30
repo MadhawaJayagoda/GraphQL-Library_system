@@ -1,20 +1,17 @@
 import React, { useState } from "react";
-import { graphql } from 'react-apollo';  // helps to bind apollo to react
+import { graphql } from 'react-apollo'; 
 import {flowRight as compose} from 'lodash';
 import { getAuthorsQuery, addBookMutation, getBooksQuery } from "../queries/queries";
 import "../components/css/AddBook.css";
 
 const AddBook = (props) => {
 
-    // State
     const [name, setBookName] = useState("");
     const [genre, setGenre] = useState("");    
     const [authorId, setAuthorId] = useState("");    
 
     const displayAuthors = () => {
         var data = props.getAuthorsQuery;
-
-        // console.log("Authors from displayAuthors() method: ", data);
 
         if (data.loading) {
             return ( <option disabled> Loading Authors ... </option>);
@@ -28,10 +25,6 @@ const AddBook = (props) => {
     const handleSubmitButtonClick = (e) => {
         e.preventDefault();
 
-        // console.log("Book Name: ", name);
-        // console.log("Book Genre: ", genre);
-        // console.log("Book Author ID: ", authorId);
-
         props.addBookMutation({
             variables: {
                 name: name,
@@ -39,18 +32,13 @@ const AddBook = (props) => {
                 authorId: authorId
             }, 
             refetchQueries: [
-                // Tell GraphQL or Apollo to Refetch a particular Query after the Mutation 
                 { query: getBooksQuery } 
             ]
         });
-
-        // Clear the fields 
         setBookName("");
         setGenre("");
         setAuthorId("");
     }
-
-    console.log("Props from AddBook : ", props);
 
     return (
         <form id="add-book" onSubmit={handleSubmitButtonClick}>
