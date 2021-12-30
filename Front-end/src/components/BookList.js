@@ -1,16 +1,12 @@
 import React, { useState } from "react";
-import { graphql } from 'react-apollo'  // helps to bind apollo to react
+import { graphql } from 'react-apollo';
 import { getBooksQuery } from "../queries/queries";
 import BookDetails from "./BookDetails";
 import "../components/css/BookList.css";
 
 const BookList = (props) => {
 
-
   const [selected, setSelected] = useState("");
-
-  // Data from Query is stored in Props 
-  // console.log(props);
 
   const displayBooks = () => {
       var data = props.data;
@@ -23,7 +19,6 @@ const BookList = (props) => {
       }
   };
  
-
   return (
     <div>
       <ul id="book-list">
@@ -35,4 +30,4 @@ const BookList = (props) => {
   );
 };
 
-export default graphql(getBooksQuery)(BookList);   // Bind "getBooksQuery" to "BookList" component
+export default graphql(getBooksQuery)(BookList);   

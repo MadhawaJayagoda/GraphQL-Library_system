@@ -1,5 +1,4 @@
 node_modules/
 src/resources/*
 src/components/css/
-src/components/BookDetails.js
 src/queries/
