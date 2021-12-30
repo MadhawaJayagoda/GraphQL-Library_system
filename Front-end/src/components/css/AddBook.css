@@ -1,0 +1,62 @@
+#add-book {
+    background: #fff;
+    padding: 20px;
+    position: fixed;
+    left: 10;
+    bottom: 10;
+    width: 400px;
+}
+
+#add-book .field {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+} 
+
+#add-book .field label {
+    text-align: right;
+    padding: 6px;
+}
+
+#add-book .field input {
+    margin: 5px;
+    padding: 6px;
+    box-sizing: border-box;
+}
+
+.field-author {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+}
+
+#add-book .field-author {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+} 
+
+#add-book .field-author label {
+    text-align: right;
+    padding: 6px;
+}
+
+#author {
+    margin: 5px;
+    padding: 6px;
+    box-sizing: border-box;
+}
+
+#add-book button {
+    color: #fff;
+    font-size: 1.5em;
+    background: #AD1457;
+    border: 0;
+    padding: 0 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    position: absolute;
+    bottom: 0px;
+    left: 10px;
+    margin: 5px auto;
+}
