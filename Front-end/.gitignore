@@ -1,4 +1,6 @@
 node_modules/
 src/resources/*
-src/components/
+src/components/css/
+src/components/BookDetails.js
+src/components/AddBook.js
 src/queries/
